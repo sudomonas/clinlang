@@ -1,0 +1,302 @@
+════ deterministic_output_check.cln
+  18:1 hint CLN2001 'careplan' is not a known command; its values are recorded under that name
+────
+──────────────────────────────────────────────────
+Patient: 54y/M | Wt: 79 kg | Ht: 171 cm  |  ID: PT-DETERMINISTIC-001
+Context: OPD revisit
+
+[!] ALLERGIES: PENICILLIN_RASH [!]
+──────────────────────────────────────────────────
+
+S — SUBJECTIVE
+─────────────────────────
+Chief Complaint: fatigue and pedal edema
+HPI            : progressive fatigue for 3h with mild breathlessness on exertion
+PMH            : htn dm2
+Symptoms       : fatigue (severe, 3 weeks); edema (mild, 2 weeks); sob (mild, 2 weeks)
+
+O — OBJECTIVE
+─────────────────────────
+Vitals         : hr 104 | temp 99.1 | rr 20 | bp 146/92 | spo 294
+Labs           : na 131 | k 4.2 | hb 9.4 | wbc 12200 | cr 1.6 | ecg sinus_tach | cxr cardiomegaly | usg grade1_nephropathy
+Derived        : Body mass index 27.02 kg/m2 | Body surface area 1.94 m2
+CAREPLAN       : zeta_done | alpha_pending | mid_review
+
+A — ASSESSMENT
+─────────────────────────
+Diagnosis      : Symptomatic anemia with fluid overload
+
+P — PLAN
+─────────────────────────
+  ▸ Rx: Furosemide 40 mg Intravenously, immediately
+  ▸ Rx: Pantoprazole 40 mg Intravenously, once daily for 3 days
+
+──────────────────────────────────────────────────
+
+════ example.cln
+────
+──────────────────────────────────────────────────
+Patient: 34y/M | Wt: 65 kg | Ht: 17 cm
+──────────────────────────────────────────────────
+
+S — SUBJECTIVE
+─────────────────────────
+Chief Complaint: fever and productive cough 5 days
+HPI            : started with fever, then cough with yellow sputum, worsening SOB at rest
+PMH            : dm2 htn asthma
+Symptoms       : fever (severe, 3 days); cough (severe, 5 days); sob (mild); sweating (mild); chills (improving)
+
+O — OBJECTIVE
+─────────────────────────
+Physical Exam  : crepitations+ consolidation+ bronchialbreathing+
+Vitals         : bp 130/85 | hr 102 | spo 294 | temp 100.4 | rr 22
+Labs           : hb 11.2 | wbc 14500 | plt 220000 | crp 48 | esr 65
+Derived        : Body mass index 2249.13 kg/m2 | Body surface area 0.55 m2
+
+A — ASSESSMENT
+─────────────────────────
+Diagnosis      : community acquired pneumonia
+
+P — PLAN
+─────────────────────────
+  [not documented]
+
+──────────────────────────────────────────────────
+
+════ full_core_plus_plugin_mix.cln
+  23:1 hint CLN3005 no dosing frequency given for iv_fluids
+────
+──────────────────────────────────────────────────
+Patient: 29y/F | Wt: 64 kg | Ht: 159 cm | Bed: 12 | LaborWard  |  ID: PT-FULL-OB-001
+Context: Emergency admission
+Profile: obgyn
+
+[!] ALLERGIES: NKDA [!]
+──────────────────────────────────────────────────
+
+S — SUBJECTIVE
+─────────────────────────
+Chief Complaint: Severe labor pain with show
+HPI            : Regular contractions for 6 hours, show present, no leaking reported
+PMH            : previous lower_segment_cesarean_section
+Social History : non-smoker etoh-
+Family History : htn_in_mother
+Symptoms       : pain (very severe, 6 hours); anxiety (mild, 6 hours)
+
+O — OBJECTIVE
+─────────────────────────
+Vitals         : bp 132/84 | hr 102 | spo 298 | temp 99 | rr 22
+Labs           : hb 10.1 | wbc 12400 | plt 210000 | cr 0.8 | usg single_live_iup cephalic estimated_weight_2.9kg
+Derived        : Body mass index 25.32 kg/m2 | Body surface area 1.68 m2
+Obstetric      : Gestational age 36w | Fetal heart rate 142bpm | Fetal heart sounds 142 regular reactive | Contractions 4 in 10min lasting 50s
+
+A — ASSESSMENT
+─────────────────────────
+Diagnosis      : Trial of labor after cesarean in active phase
+Differential   : scar_tenderness fetal_distress
+
+P — PLAN
+─────────────────────────
+  ▸ Rx: Iv_fluids 100 mL/hr Intravenously
+  ▸ Rx: Paracetamol 1 g Intravenously, immediately
+
+──────────────────────────────────────────────────
+
+════ mi.cln
+  11:1 hint CLN2001 'ecg' is not a known command; its values are recorded under that name
+────
+──────────────────────────────────────────────────
+Patient: 58y/M | Wt: 82 kg | Ht: 172 cm | Bed: 12
+──────────────────────────────────────────────────
+
+S — SUBJECTIVE
+─────────────────────────
+Chief Complaint: chest pain and breathlessness since 4h
+HPI            : sudden onset central chest pain radiating to left arm and jaw, associated diaphoresis and nausea
+PMH            : dm2 htn hyperlipidaemia
+Symptoms       : chestpain (very severe, 4 hours); sob (severe); diaphoresis (mild); nausea (mild)
+
+O — OBJECTIVE
+─────────────────────────
+Vitals         : bp 160/100 | hr 98 | spo 292 | temp 98.6 | rr 22
+Labs           : hb 13.2 | wbc 11000 | trop 0.8 | ckmb 48 | creatinine 1.1 | na 138 | k 4.1
+Derived        : Body mass index 27.72 kg/m2 | Body surface area 1.98 m2
+ECG            : v1 st
+
+A — ASSESSMENT
+─────────────────────────
+Diagnosis      : Inferior STEMI for primary PCI
+
+P — PLAN
+─────────────────────────
+  ▸ Rx: Aspirin 300 mg Orally, immediately
+  ▸ Rx: Clopidogrel 300 mg Orally, immediately
+  ▸ Rx: Heparin 5000 U Intravenously, immediately
+  ▸ Rx: Metoprolol 25 mg, twice daily
+
+──────────────────────────────────────────────────
+
+════ multi_profile_profile_syntax.cln
+  1:16 warning CLN2006 unknown profile 'radio'
+────
+──────────────────────────────────────────────────
+Patient: 31y/F | Wt: 68 kg | Ht: 162 cm  |  ID: PT-MULTI-002
+Profile: obgyn
+──────────────────────────────────────────────────
+
+S — SUBJECTIVE
+─────────────────────────
+Chief Complaint: Reduced fetal movements with back pain
+HPI            : Decreased fetal movement perception since morning with dull low back ache
+Symptoms       : reduced_fetal_movement (severe, 8 hours); back_pain (mild, 1 day)
+
+O — OBJECTIVE
+─────────────────────────
+Vitals         : bp 124/78 | hr 92 | spo 299 | temp 98.8 | rr 18
+Labs           : usg single_live_iup cephalic placenta_anterior afi_adequate
+Derived        : Body mass index 25.91 kg/m2 | Body surface area 1.75 m2
+Obstetric      : Gestational age 34w | LMP 2025-06-15 | EDD 2026-03-22 | GPAL G3P1A1L1 | Fetal heart rate 138bpm
+
+A — ASSESSMENT
+─────────────────────────
+Diagnosis      : High-risk ANC follow-up
+
+P — PLAN
+─────────────────────────
+  ▸ Rx: Iron_folic_acid 1 tab Orally, once daily for 30 days
+
+──────────────────────────────────────────────────
+
+════ multi_profile_stack_partial.cln
+  1:2 warning CLN2006 unknown profile 'pedia'
+────
+──────────────────────────────────────────────────
+Patient: 26y/F | Wt: 62 kg | Ht: 160 cm  |  ID: PT-MULTI-001
+Profile: obgyn
+──────────────────────────────────────────────────
+
+S — SUBJECTIVE
+─────────────────────────
+Chief Complaint: Fever with lower abdominal pain in pregnancy
+HPI            : Fever for 2 days with intermittent lower abdominal discomfort, no bleeding
+PMH            : hypothyroidism on levothyroxine
+Symptoms       : fever (severe, 2 days); pain (mild, 2 days)
+
+O — OBJECTIVE
+─────────────────────────
+Vitals         : bp 110/70 | hr 98 | spo 298 | temp 100.2 | rr 20
+Labs           : wbc 13800 | hb 10.8 | cr 0.9 | na 134 | k 3.9
+Derived        : Body mass index 24.22 kg/m2 | Body surface area 1.66 m2
+Obstetric      : Gestational age 30w | LMP 2025-07-10 | EDD 2026-04-16 | GPAL G2P1A0L1 | Fetal heart rate 146bpm
+
+A — ASSESSMENT
+─────────────────────────
+Diagnosis      : Antenatal febrile illness at 30 weeks
+
+P — PLAN
+─────────────────────────
+  ▸ Rx: Paracetamol 650 mg Orally, every 6 hours for 2 days
+
+──────────────────────────────────────────────────
+
+════ normal_delivery.cln
+  24:1 hint CLN2001 'delivery_details' is not a known command; its values are recorded under that name
+  24:48 hint CLN3003 '_10' is not a known unit
+────
+──────────────────────────────────────────────────
+Patient: 28y/F | Wt: 65 kg  |  ID: PT-99210-OB
+Profile: obgyn
+──────────────────────────────────────────────────
+
+S — SUBJECTIVE
+─────────────────────────
+Chief Complaint: Admitted in active labor at term
+HPI            : Patient experienced spontaneous rupture of membranes 2 hours prior to admission, followed by regular contractions. Fluid was clear.
+PMH            : Uncomplicated previous spontaneous vaginal delivery in 2023. No history of gestational diabetes or hypertension.
+Symptoms       : pain (very severe, 4 hours)
+
+O — OBJECTIVE
+─────────────────────────
+Vitals         : bp 120/75 | hr 88 | spo 299 | temp 37.1 | rr 18
+DELIVERY_DETAILS: baby_cried_immediately | apgar_ 9 _10 | weight_ 3.2 kg
+Obstetric      : Gestational age 32w | LMP 2025-06-15 | EDD 2026-03-22 | GPAL G2P1A0L1 | Fetal heart rate 140bpm | Fetal heart sounds 145 regular, reassuring reactive trace on CTG | Contractions 4 in 10 mins, lasting 45 seconds, strong intensity
+
+A — ASSESSMENT
+─────────────────────────
+Diagnosis      : Normal Vaginal Delivery at Term
+
+P — PLAN
+─────────────────────────
+  ▸ Rx: Oxytocin 10 U Intramuscularly, immediately
+  ▸ Rx: Paracetamol 1 g Orally, immediately
+  ▸ Rx: Ibuprofen 400 mg Orally, three times daily for 3 days
+
+──────────────────────────────────────────────────
+
+════ test.cln
+────
+──────────────────────────────────────────────────
+Patient: 34y/M | Wt: 65 kg | Ht: 170 cm
+──────────────────────────────────────────────────
+
+S — SUBJECTIVE
+─────────────────────────
+Chief Complaint: fever and productive cough 5 days
+HPI            : started with fever, then cough with yellow sputum, worsening SOB at rest
+PMH            : dm2 htn asthma
+Symptoms       : fever (severe, 3 days); cough (severe, 5 days); sob (mild); sweating (mild); chills (improving)
+
+O — OBJECTIVE
+─────────────────────────
+Physical Exam  : crepitations+ consolidation+ bronchialbreathing+
+Vitals         : bp 130/85 | hr 102 | spo 294 | temp 100.4 | rr 22
+Labs           : hb 11.2 | wbc 14500 | plt 220000 | crp 48 | esr 65
+Derived        : Body mass index 22.49 kg/m2 | Body surface area 1.75 m2
+
+A — ASSESSMENT
+─────────────────────────
+Diagnosis      : community acquired pneumonia
+
+P — PLAN
+─────────────────────────
+  [not documented]
+
+──────────────────────────────────────────────────
+
+════ ward.cln
+────
+──────────────────────────────────────────────────
+Patient: 65y/M | Wt: 75 kg | Ht: 175 cm
+Context: Day 3 post-op Laparotomy
+
+[!] ALLERGIES: PENICILLIN RASH, SULFA ANAPHYLAXIS [!]
+──────────────────────────────────────────────────
+
+S — SUBJECTIVE
+─────────────────────────
+Chief Complaint: fever and increasing abdominal pain
+HPI            : Pain started 12 hours ago, sharp, localized to right iliac fossa. Associated with 2 episodes of non-bilious emesis.
+PMH            : dm2 htn cad
+Social History : smoker 40py, etoh-
+Family History : cad in mother at 50
+Symptoms       : abd_pain (very severe, 12 hours); fever (severe); emesis (severe); nausea (mild)
+
+O — OBJECTIVE
+─────────────────────────
+Vitals         : bp 100/60 | hr 110 | spo 295 | temp 101.4 | rr 22
+Examination    : cvs rr s1s2 | rs nvb | abd tender_rif guarding+ bowel_sounds_sluggish
+Labs           : hb 9.2 | wbc 18000 | plt 250000 | cr 1.5 | na 132 | k 3.8 | cxr wnl | ecg stemi | hiv negative | hbv positive | dengue negative | widal 1/60
+Derived        : Body mass index 24.49 kg/m2 | Body surface area 1.91 m2
+
+A — ASSESSMENT
+─────────────────────────
+Diagnosis      : Post-operative intra-abdominal sepsis
+Differential   : Anastomotic leak / Abscess
+
+P — PLAN
+─────────────────────────
+  ▸ Rx: Paracetamol 1 g Intravenously, four times daily
+  ▸ Rx: Piptaz 4.5 g Intravenously, three times daily
+
+──────────────────────────────────────────────────
+

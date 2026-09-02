@@ -1,0 +1,47 @@
+=== deterministic_output_check.cln
+18:1 hint CLN2001 'careplan' is not a known command; its values are recorded under that name
+=== example.cln
+=== full_core_plus_plugin_mix.cln
+1:10 warning CLN2006 unknown profile 'obgyn'
+2:19 warning CLN3001 'ga:36w' is not recognised in a pt statement
+15:1 hint CLN2001 'fhs' is not a known command; its values are recorded under that name
+15:5 warning CLN3001 '142' is not recognised in a fhs statement
+16:1 hint CLN2001 'ctx' is not a known command; its values are recorded under that name
+16:5 warning CLN3001 '4' is not recognised in a ctx statement
+16:10 warning CLN3001 '10min' is not recognised in a ctx statement
+16:24 warning CLN3001 '50s' is not recognised in a ctx statement
+23:1 hint CLN3005 no dosing frequency given for iv_fluids
+=== mi.cln
+11:1 hint CLN2001 'ecg' is not a known command; its values are recorded under that name
+=== multi_profile_profile_syntax.cln
+1:10 warning CLN2006 unknown profile 'obgyn'
+1:16 warning CLN2006 unknown profile 'radio'
+2:19 warning CLN3001 'ga:34w' is not recognised in a pt statement
+4:1 hint CLN2001 'gpal' is not a known command; its values are recorded under that name
+4:8 hint CLN3003 'P1A1L1' is not a known unit
+5:1 hint CLN2001 'lmp' is not a known command; its values are recorded under that name
+6:1 hint CLN2001 'edd' is not a known command; its values are recorded under that name
+=== multi_profile_stack_partial.cln
+1:1 warning CLN2004 unknown directive @obgyn+pedia
+2:19 warning CLN3001 'ga:30w' is not recognised in a pt statement
+4:1 hint CLN2001 'gpal' is not a known command; its values are recorded under that name
+4:8 hint CLN3003 'P1A0L1' is not a known unit
+5:1 hint CLN2001 'lmp' is not a known command; its values are recorded under that name
+6:1 hint CLN2001 'edd' is not a known command; its values are recorded under that name
+=== normal_delivery.cln
+1:10 warning CLN2006 unknown profile 'obgyn'
+2:15 warning CLN3001 'ga:32w' is not recognised in a pt statement
+4:1 hint CLN2001 'gpal' is not a known command; its values are recorded under that name
+4:8 hint CLN3003 'P1A0L1' is not a known unit
+5:1 hint CLN2001 'lmp' is not a known command; its values are recorded under that name
+6:1 hint CLN2001 'edd' is not a known command; its values are recorded under that name
+13:1 hint CLN2001 'fhs' is not a known command; its values are recorded under that name
+13:5 warning CLN3001 '145' is not recognised in a fhs statement
+14:1 hint CLN2001 'ctx' is not a known command; its values are recorded under that name
+14:5 warning CLN3001 '4' is not recognised in a ctx statement
+14:10 warning CLN3001 '10' is not recognised in a ctx statement
+14:27 warning CLN3001 '45' is not recognised in a ctx statement
+24:1 hint CLN2001 'delivery_details' is not a known command; its values are recorded under that name
+24:48 hint CLN3003 '_10' is not a known unit
+=== test.cln
+=== ward.cln

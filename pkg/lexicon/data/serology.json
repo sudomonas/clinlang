@@ -1,0 +1,25 @@
+{
+  "_comment": [
+    "Qualifier labels in an investigation context.",
+    "",
+    "The same +/- runs mean different things depending on where they appear. On",
+    "a symptom, '-' is a trend: the complaint is improving. On a laboratory or",
+    "imaging result, '-' is a result: the test is negative. Rendering 'HIV",
+    "improving' because the symptom table was applied to a lab line would be",
+    "both wrong and alarming, so the two vocabularies are kept separate and",
+    "chosen by statement context.",
+    "",
+    "These labels report what was recorded. They carry no ordering and no",
+    "significance: '+++' is labelled 'strongly positive' because that is what",
+    "the notation says, not because the engine judges it to matter more."
+  ],
+
+  "grades": {
+    "+++": "strongly positive",
+    "++": "positive",
+    "+": "positive",
+    "---": "strongly negative",
+    "--": "negative",
+    "-": "negative"
+  }
+}

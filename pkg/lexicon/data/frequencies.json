@@ -1,0 +1,45 @@
+{
+  "_comment": [
+    "Dosing frequencies. Each entry maps a canonical code to its display form",
+    "and, where the shorthand implies one, a structured timing.",
+    "",
+    "as_needed is a SEPARATE AXIS from frequency, not a value of it. The",
+    "previous engine kept both in one string field, so 'qds prn' set QDS and",
+    "then immediately overwrote it with PRN, losing the four-times-daily",
+    "ceiling from the output entirely. A prescription can be four times daily",
+    "AND as needed; those are two facts, and they are stored as two fields.",
+    "",
+    "count/period/period_unit are optional. An entry without them still",
+    "renders correctly as text; it simply carries no structured timing."
+  ],
+
+  "frequencies": {
+    "OD":    {"display": "Once daily",        "count": 1, "period": 1, "period_unit": "d", "aliases": ["od", "qd", "daily", "once"]},
+    "BD":    {"display": "Twice daily",       "count": 2, "period": 1, "period_unit": "d", "aliases": ["bd", "bid", "twice"]},
+    "TDS":   {"display": "Three times daily", "count": 3, "period": 1, "period_unit": "d", "aliases": ["tds", "tid"]},
+    "QDS":   {"display": "Four times daily",  "count": 4, "period": 1, "period_unit": "d", "aliases": ["qds", "qid"]},
+
+    "Q1H":   {"display": "Every hour",       "count": 1, "period": 1,  "period_unit": "h", "aliases": ["q1h", "qh", "hourly"]},
+    "Q2H":   {"display": "Every 2 hours",    "count": 1, "period": 2,  "period_unit": "h", "aliases": ["q2h"]},
+    "Q4H":   {"display": "Every 4 hours",    "count": 1, "period": 4,  "period_unit": "h", "aliases": ["q4h"]},
+    "Q6H":   {"display": "Every 6 hours",    "count": 1, "period": 6,  "period_unit": "h", "aliases": ["q6h"]},
+    "Q8H":   {"display": "Every 8 hours",    "count": 1, "period": 8,  "period_unit": "h", "aliases": ["q8h"]},
+    "Q12H":  {"display": "Every 12 hours",   "count": 1, "period": 12, "period_unit": "h", "aliases": ["q12h"]},
+    "Q24H":  {"display": "Every 24 hours",   "count": 1, "period": 24, "period_unit": "h", "aliases": ["q24h"]},
+
+    "QAM":   {"display": "Every morning", "count": 1, "period": 1, "period_unit": "d", "when": ["MORN"], "aliases": ["qam", "om", "mane"]},
+    "QPM":   {"display": "Every evening", "count": 1, "period": 1, "period_unit": "d", "when": ["EVE"],  "aliases": ["qpm"]},
+    "Nocte": {"display": "At night",      "count": 1, "period": 1, "period_unit": "d", "when": ["NIGHT"], "aliases": ["nocte", "on", "hs"]},
+
+    "QOD":   {"display": "Every other day", "count": 1, "period": 2, "period_unit": "d", "aliases": ["qod", "eod", "altdays"]},
+    "QW":    {"display": "Once weekly",     "count": 1, "period": 1, "period_unit": "wk", "aliases": ["qw", "qwk", "weekly"]},
+    "BIW":   {"display": "Twice weekly",    "count": 2, "period": 1, "period_unit": "wk", "aliases": ["biw"]},
+    "QM":    {"display": "Once monthly",    "count": 1, "period": 1, "period_unit": "mo", "aliases": ["qm", "monthly"]},
+
+    "STAT":  {"display": "Immediately", "count": 1, "priority": "stat", "aliases": ["stat", "immediately"]}
+  },
+
+  "modifiers": {
+    "PRN": {"display": "As needed", "as_needed": true, "aliases": ["prn", "asneeded", "sos"]}
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "_comment": [
+    "Routes of administration. Every alias resolves to a code, and every code",
+    "has exactly one display form.",
+    "",
+    "The previous tables were asymmetric: some aliases produced a code ('iv' ->",
+    "'IV') while others produced a display string ('top' -> 'Topical'), so the",
+    "expansion table had unreachable entries and 'top' only rendered correctly",
+    "by accident. One direction, one shape, no dead keys."
+  ],
+
+  "routes": {
+    "PO":      {"display": "Orally",           "aliases": ["po", "oral", "bymouth"]},
+    "IV":      {"display": "Intravenously",    "aliases": ["iv", "intravenous"]},
+    "IM":      {"display": "Intramuscularly",  "aliases": ["im", "intramuscular"]},
+    "SC":      {"display": "Subcutaneously",   "aliases": ["sc", "sq", "subcut", "subcutaneous"]},
+    "SL":      {"display": "Sublingually",     "aliases": ["sl", "sublingual"]},
+    "TOP":     {"display": "Topically",        "aliases": ["top", "topical"]},
+    "NEB":     {"display": "Nebulised",        "aliases": ["neb", "nebulised", "nebulized"]},
+    "INH":     {"display": "Inhaled",          "aliases": ["inh", "inhaled", "inhalation"]},
+    "PR":      {"display": "Rectally",         "aliases": ["pr", "rectal"]},
+    "PV":      {"display": "Vaginally",        "aliases": ["pv", "vaginal"]},
+    "NG":      {"display": "Via nasogastric tube", "aliases": ["ng", "nasogastric"]},
+    "OPHTH":   {"display": "Into the eye",     "aliases": ["ophth", "eye", "oculur", "ocular"]},
+    "OTIC":    {"display": "Into the ear",     "aliases": ["otic", "ear", "aural"]},
+    "NASAL":   {"display": "Nasally",          "aliases": ["nasal", "intranasal", "in"]},
+    "TD":      {"display": "Transdermally",    "aliases": ["td", "transdermal", "patch"]}
+  }
+}

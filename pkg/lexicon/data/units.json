@@ -1,0 +1,143 @@
+{
+  "_comment": [
+    "Units of measure, grouped by dimension.",
+    "",
+    "This table replaces character trimming. The previous engine wrote",
+    "strings.TrimRight(numPart, \"cmCM\"), which strips any trailing character",
+    "in that set rather than the suffix \"cm\": 'ht1.7m' became '1.7' and was",
+    "recorded as a height of 1.7 cm, from which BMI was then computed. The",
+    "same pattern with \"kgKG\" and \"bedBED\" had the same defect.",
+    "",
+    "'factor' converts a value in this unit to the dimension's base unit.",
+    "'offset' is applied after scaling and exists only for temperature.",
+    "",
+    "Conversion is available to callers but is never applied silently to what",
+    "a clinician recorded: a value entered in Fahrenheit is stored and",
+    "rendered in Fahrenheit."
+  ],
+
+  "dimensions": {
+    "mass": {
+      "base": "kg",
+      "units": {
+        "kg":  {"factor": 1,          "aliases": ["kg", "kgs", "kilo", "kilos", "kilogram", "kilograms"]},
+        "g":   {"factor": 0.001,      "aliases": ["g", "gm", "gms", "gram", "grams"]},
+        "mg":  {"factor": 0.000001,   "aliases": ["mg", "mgs", "milligram", "milligrams"]},
+        "mcg": {"factor": 1e-9,       "aliases": ["mcg", "ug", "µg", "microgram", "micrograms"]},
+        "ng":  {"factor": 1e-12,      "aliases": ["ng", "nanogram", "nanograms"]},
+        "lb":  {"factor": 0.45359237, "aliases": ["lb", "lbs", "pound", "pounds"]}
+      }
+    },
+
+    "length": {
+      "base": "cm",
+      "units": {
+        "cm": {"factor": 1,     "aliases": ["cm", "cms", "centimetre", "centimeter", "centimetres", "centimeters"]},
+        "m":  {"factor": 100,   "aliases": ["m", "metre", "meter", "metres", "meters"]},
+        "mm": {"factor": 0.1,   "aliases": ["mm", "millimetre", "millimeter"]},
+        "in": {"factor": 2.54,  "aliases": ["in", "inch", "inches"]},
+        "ft": {"factor": 30.48, "aliases": ["ft", "foot", "feet"]}
+      }
+    },
+
+    "temperature": {
+      "base": "C",
+      "units": {
+        "C": {"factor": 1,       "offset": 0,     "aliases": ["c", "celsius", "centigrade"]},
+        "F": {"factor": 0.55555555555555556, "offset": -17.77777777777778, "aliases": ["f", "fahrenheit"]}
+      }
+    },
+
+    "time": {
+      "base": "h",
+      "units": {
+        "h":   {"factor": 1,        "aliases": ["h", "hr", "hrs", "hour", "hours"]},
+        "min": {"factor": 0.0166666666666667, "aliases": ["min", "mins", "minute", "minutes"]},
+        "s":   {"factor": 0.000277777777777778, "aliases": ["s", "sec", "secs", "second", "seconds"]},
+        "d":   {"factor": 24,       "aliases": ["d", "dy", "dys", "day", "days"]},
+        "wk":  {"factor": 168,      "aliases": ["w", "wk", "wks", "week", "weeks"]},
+        "mo":  {"factor": 730.5,    "aliases": ["mo", "mos", "month", "months"]},
+        "y":   {"factor": 8766,     "aliases": ["y", "yr", "yrs", "year", "years"]}
+      }
+    },
+
+    "pressure": {
+      "base": "mmHg",
+      "units": {
+        "mmHg": {"factor": 1,      "aliases": ["mmhg", "mm hg"]},
+        "kPa":  {"factor": 7.50062, "aliases": ["kpa"]},
+        "cmH2O": {"factor": 0.735559, "aliases": ["cmh2o"]}
+      }
+    },
+
+    "volume": {
+      "base": "mL",
+      "units": {
+        "mL": {"factor": 1,    "aliases": ["ml", "millilitre", "milliliter", "cc"]},
+        "L":  {"factor": 1000, "aliases": ["l", "litre", "liter", "litres", "liters"]}
+      }
+    },
+
+    "amount": {
+      "base": "mmol",
+      "units": {
+        "mmol": {"factor": 1,     "aliases": ["mmol", "millimole"]},
+        "mol":  {"factor": 1000,  "aliases": ["mol", "mole"]},
+        "umol": {"factor": 0.001, "aliases": ["umol", "µmol", "micromole"]},
+        "nmol": {"factor": 0.000001, "aliases": ["nmol", "nanomole"]}
+      }
+    },
+
+    "dimensionless": {
+      "base": "",
+      "units": {
+        "%":    {"factor": 1, "aliases": ["%", "pct", "percent"]},
+        "U":    {"factor": 1, "aliases": ["u", "unit", "units"]},
+        "IU":   {"factor": 1, "aliases": ["iu", "internationalunit"]},
+        "bpm":  {"factor": 1, "aliases": ["bpm"]},
+        "tab":  {"factor": 1, "aliases": ["tab", "tabs", "tablet", "tablets"]},
+        "cap":  {"factor": 1, "aliases": ["cap", "caps", "capsule", "capsules"]},
+        "drop": {"factor": 1, "aliases": ["drop", "drops", "gtt", "gtts"]},
+        "puff": {"factor": 1, "aliases": ["puff", "puffs"]}
+      }
+    }
+  },
+
+  "compound": {
+    "_comment": "Ratio units written as a single token. Kept as opaque canonical strings; ClinLang does not do dimensional arithmetic on them.",
+    "aliases": {
+      "g/dl":    "g/dL",
+      "g/dL":    "g/dL",
+      "mg/dl":   "mg/dL",
+      "mg/dL":   "mg/dL",
+      "mmol/l":  "mmol/L",
+      "mmol/L":  "mmol/L",
+      "mg/l":    "mg/L",
+      "umol/l":  "umol/L",
+      "iu/l":    "IU/L",
+      "u/l":     "U/L",
+      "meq/l":   "mEq/L",
+      "ml/min":  "mL/min",
+      "mg/kg":   "mg/kg",
+      "mcg/kg":  "mcg/kg",
+      "mg/day":  "mg/day",
+
+      "ml/hr":     "mL/hr",
+      "ml/h":      "mL/hr",
+      "ml/hour":   "mL/hr",
+      "l/min":     "L/min",
+      "u/hr":      "U/hr",
+      "u/h":       "U/hr",
+      "iu/hr":     "IU/hr",
+      "mg/hr":     "mg/hr",
+      "mcg/hr":    "mcg/hr",
+      "mcg/min":   "mcg/min",
+      "mg/min":    "mg/min",
+      "mmol/hr":   "mmol/hr",
+      "mcg/kg/min": "mcg/kg/min",
+      "mg/kg/day":  "mg/kg/day",
+      "u/kg":      "U/kg",
+      "mg/m2":     "mg/m2"
+    }
+  }
+}

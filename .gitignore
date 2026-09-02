@@ -1,0 +1,21 @@
+# Build output. Reproducible from the tree, so not tracked: 14 MB of binaries
+# and generated HTML have no place in a repository whose point is diffable
+# plain text.
+/dist/
+
+# Go
+*.exe
+*.test
+*.out
+coverage.*
+
+# Editors and OS
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+
+# Local workspace and configuration. A clinician's own notes and lexicon
+# overrides live outside version control by default.
+.config/
+*.local.json

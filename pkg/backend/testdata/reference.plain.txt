@@ -1,0 +1,49 @@
+──────────────────────────────────────────────────
+CLINICAL NOTE
+──────────────────────────────────────────────────
+ID                    : PT-REF-0001
+Patient               : 58y/M | Wt: 82 kg | Ht: 1.78 m | Bed: 12 | CCU
+Context               : Day 2 post-admission
+Allergies             : penicillin rash, sulfa anaphylaxis
+──────────────────────────────────────────────────
+Chief Complaint       : chest pain and breathlessness since 4h
+HPI                   : sudden onset central chest pain radiating to left arm, with diaphoresis
+PMH                   : Type 2 Diabetes Mellitus Hypertension
+Social History        : smoker 40py
+Symptoms:
+  ▸ Chest pain (very severe, 4 hours)
+  ▸ Shortness of breath (severe)
+  ▸ Nausea (mild)
+Denies                : Fever; Cough; Fainting
+Vitals:
+  ▸ Blood pressure       160/100 mmHg
+  ▸ Heart rate           98 bpm
+  ▸ Oxygen saturation    92%
+  ▸ Temperature          37.4 C
+  ▸ Respiratory rate     22 /min
+Examination:
+  ▸ cvs                  s1s2 no murmurs
+  ▸ rs                   bibasal crackles
+  ▸ abd                  soft non-tender
+Labs:
+  ▸ Haemoglobin          13.2 g/dL
+  ▸ White cell count     11000
+  ▸ Troponin             0.8
+  ▸ Sodium               138 mmol/L
+  ▸ Potassium            4.1 mmol/L
+  ▸ hiv                  negative
+Imaging:
+  ▸ cxr                  patchy consolidation left lower lobe
+  ▸ ecg                  st elevation inferior leads
+Derived:
+  ▸ Body mass index      25.88 kg/m2
+  ▸ Body surface area    2.01 m2
+──────────────────────────────────────────────────
+Plan:
+  ▸ Aspirin 300 mg Orally, immediately
+  ▸ Paracetamol 1 g Orally, four times daily, as needed
+  ▸ Amoxicillin 500 mg Orally, three times daily for 7 days
+──────────────────────────────────────────────────
+Diagnosis             : inferior ST-Elevation MI for primary PCI
+Differential          : pericarditis, aortic dissection
+──────────────────────────────────────────────────

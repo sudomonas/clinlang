@@ -1,64 +1,56 @@
-# ClinLang build orchestration.
+# ClinLang build.
 #
-# Usage:
-#   make web         — install deps + build the Vite frontend, copy
-#                      into pkg/api/web-dist/ for go:embed
-#   make types       — regenerate web/src/lib/types.ts via tygo
-#   make build       — web + Go binary for the host platform
-#   make build-all   — Go binaries for linux/darwin/windows
-#   make dev         — start the Go server + Vite dev server (split panes)
-#   make clean       — remove web/dist, web-dist embed, dist/
+# The project is a language and a compiler. There is nothing to bundle: no
+# frontend, no assets, no code generation, no dependencies. `go build` is the
+# whole build.
 
-GO            := go
-NPM           := npm
-WEB_DIR       := web
-WEB_OUT       := $(WEB_DIR)/dist
-EMBED_DIR     := pkg/api/web-dist
-DIST_DIR      := dist
-BIN_NAME      := clinlang
-LDFLAGS       :=
+GO   := go
+DIST := dist
+BIN  := clinlang
 
-.PHONY: web types check-types build build-all dev clean
+.PHONY: build install build-all test race fuzz bench check update-golden clean
 
-web:
-	cd $(WEB_DIR) && $(NPM) install
-	cd $(WEB_DIR) && $(NPM) run build
-	rm -rf $(EMBED_DIR)
-	mkdir -p $(EMBED_DIR)
-	cp -R $(WEB_OUT)/. $(EMBED_DIR)/
+build:
+	$(GO) build -o $(DIST)/$(BIN) ./cmd/clinlang
 
-types:
-	$(GO) run github.com/gzuidhof/tygo@latest generate
+install:
+	$(GO) install ./cmd/clinlang
 
-# check-types regenerates the TS bindings and fails if anything in the
-# committed files differs from what tygo would write today. Use this in
-# CI to catch drift between Go structs and the frontend type surface.
-check-types: types
-	@if ! git diff --quiet -- $(WEB_DIR)/src/lib/types-engine.ts $(WEB_DIR)/src/lib/types-workspace.ts $(WEB_DIR)/src/lib/types-autocomplete.ts; then \
-		echo "ERROR: generated TS types are stale. Run 'make types' and commit."; \
-		git --no-pager diff -- $(WEB_DIR)/src/lib/types-engine.ts $(WEB_DIR)/src/lib/types-workspace.ts $(WEB_DIR)/src/lib/types-autocomplete.ts; \
-		exit 1; \
-	fi
-	@echo "Generated TS types are in sync with Go source."
+# Cross-compilation is trivial: no cgo, no dependencies, one static file per
+# target.
+build-all:
+	@mkdir -p $(DIST)
+	GOOS=linux   GOARCH=amd64 $(GO) build -o $(DIST)/$(BIN)-linux-amd64       ./cmd/clinlang
+	GOOS=linux   GOARCH=arm64 $(GO) build -o $(DIST)/$(BIN)-linux-arm64       ./cmd/clinlang
+	GOOS=darwin  GOARCH=amd64 $(GO) build -o $(DIST)/$(BIN)-darwin-amd64      ./cmd/clinlang
+	GOOS=darwin  GOARCH=arm64 $(GO) build -o $(DIST)/$(BIN)-darwin-arm64      ./cmd/clinlang
+	GOOS=windows GOARCH=amd64 $(GO) build -o $(DIST)/$(BIN)-windows-amd64.exe ./cmd/clinlang
 
-build: web
-	$(GO) build -ldflags "$(LDFLAGS)" -o $(DIST_DIR)/$(BIN_NAME) ./cmd/clinlang
+test:
+	$(GO) test ./...
 
-build-all: web
-	mkdir -p $(DIST_DIR)
-	GOOS=linux   GOARCH=amd64 $(GO) build -ldflags "$(LDFLAGS)" -o $(DIST_DIR)/$(BIN_NAME)-linux-amd64       ./cmd/clinlang
-	GOOS=linux   GOARCH=arm64 $(GO) build -ldflags "$(LDFLAGS)" -o $(DIST_DIR)/$(BIN_NAME)-linux-arm64       ./cmd/clinlang
-	GOOS=darwin  GOARCH=amd64 $(GO) build -ldflags "$(LDFLAGS)" -o $(DIST_DIR)/$(BIN_NAME)-darwin-amd64      ./cmd/clinlang
-	GOOS=darwin  GOARCH=arm64 $(GO) build -ldflags "$(LDFLAGS)" -o $(DIST_DIR)/$(BIN_NAME)-darwin-arm64      ./cmd/clinlang
-	GOOS=windows GOARCH=amd64 $(GO) build -ldflags "$(LDFLAGS)" -o $(DIST_DIR)/$(BIN_NAME)-windows-amd64.exe ./cmd/clinlang
+# Determinism is the product promise, so the race detector belongs in the
+# normal test story rather than being an occasional check.
+race:
+	$(GO) test -race ./...
 
-dev:
-	@echo "Run in two terminals:"
-	@echo "  Terminal 1:  go run ./cmd/clinlang server"
-	@echo "  Terminal 2:  cd web && npm run dev"
-	@echo "Then open http://localhost:5173"
+# The lexer and parser must never panic or hang on arbitrary input.
+fuzz:
+	$(GO) test ./pkg/lexer/  -run=Fuzz -fuzz=FuzzLex   -fuzztime=60s
+	$(GO) test ./pkg/parser/ -run=Fuzz -fuzz=FuzzParse -fuzztime=60s
+
+bench:
+	$(GO) test ./pkg/lexicon/ ./pkg/vocab/ -bench=. -benchmem -run=XXX
+
+check: test
+	$(GO) vet ./...
+	@test -z "$$(gofmt -l cmd pkg)" || (echo "unformatted files:"; gofmt -l cmd pkg; exit 1)
+
+# Accept intentional changes to golden files, after reviewing the diff.
+update-golden:
+	$(GO) test ./pkg/backend/  -update
+	$(GO) test ./pkg/clinlang/ -update
+	$(GO) test ./pkg/sema/     -update
 
 clean:
-	rm -rf $(WEB_OUT) $(EMBED_DIR) $(DIST_DIR)
-	mkdir -p $(EMBED_DIR)
-	touch $(EMBED_DIR)/.gitkeep
+	rm -rf $(DIST)
