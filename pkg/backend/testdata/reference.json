@@ -44,7 +44,6 @@
       }
     },
     "bed": "12",
-    "unit": "CCU",
     "origin": {
       "Start": 0,
       "End": 36
@@ -52,6 +51,14 @@
   },
   "encounters": [
     {
+      "type": {
+        "text": "",
+        "origin": {
+          "Start": 0,
+          "End": 0
+        }
+      },
+      "unit": "CCU",
       "context": "Day 2 post-admission",
       "findings": [
         {

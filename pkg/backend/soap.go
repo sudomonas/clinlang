@@ -25,7 +25,7 @@ func (b SOAP) Emit(c *ir.Case, opts Options) ([]byte, []diag.Diagnostic, error) 
 
 	// ── Header ───────────────────────────────────────────────────────────────
 	sb.WriteString(rule + "\n")
-	fmt.Fprintf(&sb, "Patient: %s", r.patientLine(c.Subject))
+	fmt.Fprintf(&sb, "Patient: %s", r.patientLine(c.Subject, c.Primary().Unit))
 	if c.Subject.ID != "" {
 		fmt.Fprintf(&sb, "  |  ID: %s", c.Subject.ID)
 	}

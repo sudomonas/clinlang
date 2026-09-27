@@ -221,7 +221,7 @@ func (r renderer) order(o ir.Order) string {
 }
 
 // patientLine renders the demographic summary.
-func (r renderer) patientLine(s ir.Subject) string {
+func (r renderer) patientLine(s ir.Subject, unit string) string {
 	age := "Age?"
 	if s.Age != nil {
 		age = formatNumber(s.Age.Value) + s.Age.Unit
@@ -241,8 +241,8 @@ func (r renderer) patientLine(s ir.Subject) string {
 	if s.Bed != "" {
 		line += " | Bed: " + s.Bed
 	}
-	if s.Unit != "" {
-		line += " | " + s.Unit
+	if unit != "" {
+		line += " | " + unit
 	}
 	return line
 }

@@ -204,7 +204,7 @@ func (a *analyzer) patientMeasurement(subj *ir.Subject, m *ast.Measurement) {
 	case "bed":
 		subj.Bed = valueText(m.Value)
 	case "unit":
-		subj.Unit = valueText(m.Value)
+		a.enc.Unit = valueText(m.Value)
 	case "age":
 		if q := a.quantity(m, "time", "y"); q != nil {
 			subj.Age = q

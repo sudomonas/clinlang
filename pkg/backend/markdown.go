@@ -28,7 +28,7 @@ func (b Markdown) Emit(c *ir.Case, opts Options) ([]byte, []diag.Diagnostic, err
 	fmt.Fprintf(&sb, "# %s\n\n", title)
 
 	sb.WriteString("## Patient\n")
-	fmt.Fprintf(&sb, "- **Profile**: %s\n", r.patientLine(c.Subject))
+	fmt.Fprintf(&sb, "- **Profile**: %s\n", r.patientLine(c.Subject, c.Primary().Unit))
 	if e.Context != "" {
 		fmt.Fprintf(&sb, "- **Context**: %s\n", e.Context)
 	}

@@ -32,7 +32,7 @@ func (b Plain) Emit(c *ir.Case, opts Options) ([]byte, []diag.Diagnostic, error)
 	if c.Subject.ID != "" {
 		field("ID", c.Subject.ID)
 	}
-	field("Patient", r.patientLine(c.Subject))
+	field("Patient", r.patientLine(c.Subject, c.Primary().Unit))
 	field("Context", e.Context)
 	if e.Allergies != nil {
 		field("Allergies", r.narrative(*e.Allergies))
