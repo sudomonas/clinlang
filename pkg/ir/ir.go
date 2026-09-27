@@ -363,7 +363,7 @@ type Encounter struct {
 	// verbatim and given a display name by vocabulary when one exists, like any
 	// other concept. The language defines no fixed set, because the set differs
 	// by health system and is not the language's to decide.
-	Type Coding `json:"type,omitempty"`
+	Type *Coding `json:"type,omitempty"`
 
 	// Unit is the ward, clinic or location.
 	//
@@ -435,7 +435,7 @@ type Case struct {
 // or starts a new one, so a document opening with "enc" does not leave an empty
 // encounter in front of it.
 func (e *Encounter) IsEmpty() bool {
-	return e.When == nil && e.Type.IsZero() && e.Unit == "" && e.Context == "" &&
+	return e.When == nil && (e.Type == nil || e.Type.IsZero()) && e.Unit == "" && e.Context == "" &&
 		len(e.Complaints) == 0 && len(e.Findings) == 0 && len(e.Observations) == 0 &&
 		len(e.Assessments) == 0 && len(e.Differentials) == 0 && len(e.Orders) == 0 &&
 		len(e.Narratives) == 0 && e.Allergies == nil
